@@ -14,9 +14,9 @@ namespace CoreHtmlToImage
         private static string directory;
         private static string toolFilepath;
 
-        static HtmlConverter()
+        public HtmlConverter(string customDirectory)
         {
-            directory = AppContext.BaseDirectory;
+            directory = customDirectory;
 
             //Check on what platform we are
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
@@ -67,6 +67,10 @@ namespace CoreHtmlToImage
                 //OSX not implemented
                 throw new Exception("OSX Platform not implemented yet");
             }
+        }
+
+        public HtmlConverter() : this(AppContext.BaseDirectory)
+        {
         }
 
         /// <summary>
